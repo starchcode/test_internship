@@ -47,6 +47,7 @@ hr {
   font-size: 1.5rem;
   font-weight: 400;
   overflow: visible;
+  /* max-width: 1432px; */
 }
 
 hr::after {
@@ -143,12 +144,14 @@ body > img {
   position: absolute;
   top: 48%;
   left: 8%;
+  cursor: pointer;
 }
 
 .carousel-container #nextBtn {
   position: absolute;
   top: 48%;
   right: 8%;
+  cursor: pointer;
 }
 
 .indicator{
@@ -180,15 +183,21 @@ body > img {
 .blogPost li{
     list-style: none;
     padding: 0 8px;
+    opacity: 0.4;
     cursor: pointer;
-    
+}
+li.chosenNav {
+    opacity: 1;
 }
 .blog-content{
+    width: 100%;
     flex-wrap: wrap;
 }
 
 .blog-content article{
-    width: 30%;
+    width: 350px;
+    /* flex-grow: 1; */
+    /* flex-shrink: 2; */
     padding: 10px;
     display: none;
 }
@@ -200,6 +209,32 @@ body > img {
 .blog-content .selectedBlog {
     display: block;
 }
+
+
+/* FAQ */
+
+
+.Qs article{
+    overflow: hidden;
+    transition: all 0.2s ease-out;
+  }
+  .Qs button {
+    border-radius: 100%;
+
+    width: 45px;
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    float: right;
+
+    /* margin-top: 5%; */
+  }
+  
+  .Qs article{
+    max-width: 400px;
+  }
+
+
 
 
 
