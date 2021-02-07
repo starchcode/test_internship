@@ -112,9 +112,15 @@ const openCloseQs = e => {
     }
     
   let button = article.childNodes[1].childNodes[0];
+  let buttonImgURL = button.src;
+
+  console.log('URL', button.src);
+  let mainURL = buttonImgURL.match(/.*(?=\/img\/open.svg|\/img\/close.svg)/)[0]
+  console.log(mainURL);
+
   /.\/img\/open.svg$/.test(button.src)
-    ? (button.src = './img/close.svg')
-    : (button.src = './img/open.svg');
+    ? (button.src = mainURL + '/img/close.svg')
+    : (button.src = mainURL + '/img/open.svg');
 
   let originalHeight = articleStuff[article.childNodes[3].innerHTML];
 
