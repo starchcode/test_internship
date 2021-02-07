@@ -123,33 +123,27 @@ Qs.addEventListener("click", (e) => {
 // FAQ END
 
 // Slider - Last section
+const slide = (e) => {
+
+    let sliderLocation = slider.childNodes[7].getBoundingClientRect();
+
+    if (e.target.id == "nextBtnImg" || e.target.parentNode.id == "nextBtnImg") {
+
+      if(Math.abs(sliderLocation.right / window.innerWidth) < 0.5) return // to avoid slider leaving the window
+      sliderTranslateX -= 200;
+
+    } else if (e.target.id == "prevBtnImg" || e.target.parentNode.id == "prevBtnImg") {
+
+      if(Math.abs(sliderLocation.left / window.innerWidth) > 0.5) return // to avoid slider leaving the window
+      sliderTranslateX += 200;
+
+    } else {return} // if buttons are not clicked do nothing!
+
+    slider.childNodes[7].style.transform = "translateX(" + sliderTranslateX + "px)";
+}
 
 const slider = document.querySelector(".carousel-containerImg"); // 0 is prev, 1 is next
 let sliderTranslateX = 0;
-
-slider.addEventListener("click", (e) => {
-  let sliderLocation = slider.childNodes[7].getBoundingClientRect();
-
-
-  if (e.target.id == "nextBtnImg" || e.target.parentNode.id == "nextBtnImg") {
-    if(Math.abs(sliderLocation.right / window.innerWidth) < 0.5) return
-    sliderTranslateX -= 200;
-  } else if (
-    e.target.id == "prevBtnImg" ||
-    e.target.parentNode.id == "prevBtnImg"
-  ) {
-    if(Math.abs(sliderLocation.left / window.innerWidth) > 0.5) return
-    sliderTranslateX += 200;
-  } else {
-    return;
-  }
-
-
-  //60%
-
-  // if ()
-  slider.childNodes[7].style.transform =
-    "translateX(" + sliderTranslateX + "px)";
-});
+slider.addEventListener("click", e => slide(e));
 
 // END Slider
