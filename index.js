@@ -100,15 +100,19 @@ let articleStuff = {};
 Qs.addEventListener("click", (e) => {
   let article = e.target.parentNode;
 
+if(e.target.nodeName === 'IMG') article = e.target.parentNode.parentNode
+
   if (!article.style.height) article.style.height = article.offsetHeight + "px";
+
   if (!articleStuff[article.childNodes[3].innerHTML]) {
     articleStuff[article.childNodes[3].innerHTML] = article.offsetHeight;
   }
-  let buttonText = article.childNodes[1];
+  let button = article.childNodes[1].childNodes[0];
+  // button.childNodes[0].src = '/img/close.svg'
 
-  buttonText.innerHTML == "+"
-    ? (buttonText.innerHTML = "-")
-    : (buttonText.innerHTML = "+");
+  /.\/img\/open.svg$/.test(button.src)
+    ? (button.src = '/img/close.svg')
+    : (button.src = '/img/open.svg');
 
   let totalHeight = articleStuff[article.childNodes[3].innerHTML];
   let pHeight = article.childNodes[5].offsetHeight;
