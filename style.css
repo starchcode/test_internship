@@ -337,6 +337,7 @@ hr.faqHr::after{
   margin: 0 auto;
   overflow: hidden;
   transition: all 0.2s ease;
+  flex-flow: row nowrap;
 }
 .carousel-slideImg article {
   width: 380px;

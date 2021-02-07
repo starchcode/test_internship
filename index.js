@@ -104,7 +104,7 @@ const openCloseQs = e => {
     article = e.target.parentNode.parentNode
   } 
   p = article.childNodes[5];
-  
+
   if (!p.style.height) p.style.height = p.offsetHeight + "px";
   
   if (!articleStuff[article.childNodes[3].innerHTML]) {
@@ -113,8 +113,8 @@ const openCloseQs = e => {
     
   let button = article.childNodes[1].childNodes[0];
   /.\/img\/open.svg$/.test(button.src)
-    ? (button.src = '/img/close.svg')
-    : (button.src = '/img/open.svg');
+    ? (button.src = './img/close.svg')
+    : (button.src = './img/open.svg');
 
   let originalHeight = articleStuff[article.childNodes[3].innerHTML];
 
