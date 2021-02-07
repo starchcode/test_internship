@@ -94,36 +94,44 @@ blogNav.forEach((nav, i) => {
 // END Blog Posts
 
 // FAQ
-const Qs = document.querySelector(".Qs");
+const Qs = document.querySelector(".faq-content");
 let articleStuff = {};
 
-Qs.addEventListener("click", (e) => {
-  let article = e.target.parentNode;
-
-if(e.target.nodeName === 'IMG') article = e.target.parentNode.parentNode
-
-  if (!article.style.height) article.style.height = article.offsetHeight + "px";
-
+const openCloseQs = e => {
+  let article;
+  !e.target ? article = e.parentNode: article = e.target.parentNode;
+  if(e.target &&  e.target.nodeName === 'IMG'){
+    article = e.target.parentNode.parentNode
+  } 
+  p = article.childNodes[5];
+  
+  if (!p.style.height) p.style.height = p.offsetHeight + "px";
+  
   if (!articleStuff[article.childNodes[3].innerHTML]) {
-    articleStuff[article.childNodes[3].innerHTML] = article.offsetHeight;
-  }
+      articleStuff[article.childNodes[3].innerHTML] = p.offsetHeight;
+    }
+    
   let button = article.childNodes[1].childNodes[0];
-  // button.childNodes[0].src = '/img/close.svg'
-
   /.\/img\/open.svg$/.test(button.src)
     ? (button.src = '/img/close.svg')
     : (button.src = '/img/open.svg');
 
-  let totalHeight = articleStuff[article.childNodes[3].innerHTML];
-  let pHeight = article.childNodes[5].offsetHeight;
-  let closedHeight = totalHeight - pHeight;
+  let originalHeight = articleStuff[article.childNodes[3].innerHTML];
 
-  if (article.style.height == totalHeight + "px") {
-    article.style.height = closedHeight + "px";
+  if (p.style.height == originalHeight + "px") {
+    p.style.height = 0 + 'px';
   } else {
-    article.style.height = totalHeight + "px";
+    p.style.height = originalHeight + "px";
   }
-});
+
+}
+Qs.addEventListener("click", e => openCloseQs(e));
+
+for(let i=1; i< Qs.childNodes.length; i+=4){
+  openCloseQs(Qs.childNodes[i].childNodes[5])
+  // console.log(Qs.childNodes[i].childNodes[5])
+}
+// Qs.childNodes.forEach(p => { openCloseQs(p.childNodes[5])})
 // FAQ END
 
 // Slider - Last section

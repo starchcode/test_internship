@@ -100,11 +100,15 @@ div.main-right {
 
 div.main-left,
 .featuresHeader,
-div.features.flex {
+div.features.flex,
+.blog-content,
+.faq-header {
   padding-left: 5.5%;
 }
 div.main-right,
-div.features.flex {
+div.features.flex,
+.blog-content,
+.faq-content {
   padding-right: 5.5%;
 }
 .featuresHeader {
@@ -281,24 +285,47 @@ li.chosenNav {
 }
 
 /* FAQ */
+.Qs.box{
+    align-items: flex-start;
+}
+div.faq-header {
+  flex: 1 40%;
+  padding-right: 5%;
+}
+div.faq-content {
+  flex: 1 60%;
+}
 
-.Qs article {
-  overflow: hidden;
-  transition: all 0.2s ease-out;
+div.faq-content article{
+    overflow: hidden;
+}
+.faq-content p{
+    transition: all 0.2s ease-out;
+}
+.faq-content h4{
+    padding: 0.7rem 0;
+}
+
+.Qs .faq-header header, .Qs .faq-content h4{
+color: #1d2023;
+
 }
 .Qs button {
   background-color: rgba(0, 0, 0, 0);
   margin: 0;
   padding: 0;
   float: right;
-
   /* margin-top: 5%; */
 }
-
-.Qs article {
-  max-width: 400px;
+.faqHr{
+    opacity: 0.5;
+    margin: 1rem 0;
+    font-size: 0;
 }
-
+hr.faqHr::after{
+    content: '';
+    background-color: rgba(0, 0, 0, 0);
+}
 /* image carousel */
 
 .carousel-containerImg {
