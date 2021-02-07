@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -242,18 +242,33 @@ li.chosenNav {
 /* image carousel */
 
 .carousel-containerImg{
-    width: 100%;
-    overflow: hidden;
-}
-.carousel-slideImg {
-    margin: 0 auto;
     width: 90%;
     overflow: hidden;
 }
-.carousel-slideImg img{
-    height: 300px;
+.carousel-slideImg {
+    justify-content: left;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: all 0.2s ease;
 }
-.test {
-  width: 100%;
-  background-color: bisque;
+.carousel-slideImg article {
+    width: 380px;
+    min-width: 200px;
+    flex-shrink: 1;
+    /* flex-grow: 1; */
+}
+.carousel-slideImg img{
+    width: 100%;
+    padding-left: 1px;
+}
+.carousel-containerImg h3 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+#prevBtnImg, #nextBtnImg{
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+
+    float: right;
 }

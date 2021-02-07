@@ -5,24 +5,21 @@ const indicators = document.querySelectorAll(".indicator div");
 const prevBtn = document.querySelector("#prevBtn");
 const nextBtn = document.querySelector("#nextBtn");
 
-
-// Quotes 
+// Quotes
 let counter = 1;
 let size = carouselImages[0].clientWidth;
 let newTranslateLocation = () => "translateX(" + -size * counter + "px";
 carouselSlide.style.transform = newTranslateLocation();
-const quotesSizeChange = ()=> {
-  console.log('resized')
-  size = carouselImages[0].clientWidth
+const quotesSizeChange = () => {
+  size = carouselImages[0].clientWidth;
   carouselSlide.style.transform = newTranslateLocation();
-}
-window.addEventListener('resize', _.throttle(quotesSizeChange, 500) )
+};
+window.addEventListener("resize", _.throttle(quotesSizeChange, 500));
 
 const changeIndicator = () => {
   indicators.forEach((el) => el.classList.remove("selected"));
   if (indicators[counter - 1] === undefined) {
     if (indicators.length === counter - 1) {
-      console.log("reached far with next");
       indicators[0].className = "selected";
     } else {
       indicators[indicators.length - 1].className = "selected";
@@ -49,11 +46,8 @@ prevBtn.addEventListener("click", () => {
 
   carouselSlide.style.transform = newTranslateLocation();
 
-  console.log(counter);
-
   changeIndicator();
 });
-
 
 carouselSlide.addEventListener("transitionend", () => {
   if (carouselImages[counter].id === "lastClone") {
@@ -68,7 +62,6 @@ carouselSlide.addEventListener("transitionend", () => {
   }
 });
 // END Quotes
-
 
 // Blog Posts
 const blogNav = document.querySelectorAll(".blogPost li");
@@ -100,8 +93,6 @@ blogNav.forEach((nav, i) => {
 });
 // END Blog Posts
 
-
-
 // FAQ
 const Qs = document.querySelector(".Qs");
 let articleStuff = {};
@@ -130,3 +121,35 @@ Qs.addEventListener("click", (e) => {
   }
 });
 // FAQ END
+
+// Slider - Last section
+
+const slider = document.querySelector(".carousel-containerImg"); // 0 is prev, 1 is next
+let sliderTranslateX = 0;
+
+slider.addEventListener("click", (e) => {
+  let sliderLocation = slider.childNodes[7].getBoundingClientRect();
+
+
+  if (e.target.id == "nextBtnImg" || e.target.parentNode.id == "nextBtnImg") {
+    if(Math.abs(sliderLocation.right / window.innerWidth) < 0.5) return
+    sliderTranslateX -= 200;
+  } else if (
+    e.target.id == "prevBtnImg" ||
+    e.target.parentNode.id == "prevBtnImg"
+  ) {
+    if(Math.abs(sliderLocation.left / window.innerWidth) > 0.5) return
+    sliderTranslateX += 200;
+  } else {
+    return;
+  }
+
+
+  //60%
+
+  // if ()
+  slider.childNodes[7].style.transform =
+    "translateX(" + sliderTranslateX + "px)";
+});
+
+// END Slider
