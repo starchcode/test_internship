@@ -95,16 +95,19 @@ blogNav.forEach((nav, i) => {
 
 // FAQ
 const Qs = document.querySelector(".faq-content");
+// const Qs = document.querySelector(".Qs");
 let articleStuff = {};
 
 const openCloseQs = e => {
+  
   let article;
   !e.target ? article = e.parentNode: article = e.target.parentNode;
   if(e.target &&  e.target.nodeName === 'IMG'){
     article = e.target.parentNode.parentNode
-  } 
-  p = article.childNodes[5];
+  }else if(e.target && e.target.nodeName == 'HR') return;
 
+  p = article.childNodes[5];
+  if(!p) return; //if clicked elsewhere
   if (!p.style.height) p.style.height = p.offsetHeight + "px";
   
   if (!articleStuff[article.childNodes[3].innerHTML]) {
@@ -113,10 +116,10 @@ const openCloseQs = e => {
     
   let button = article.childNodes[1].childNodes[0];
   let buttonImgURL = button.src;
+    // if (!buttonImgURL) return;
 
-  console.log('URL', button.src);
-  let mainURL = buttonImgURL.match(/.*(?=\/img\/open.svg|\/img\/close.svg)/)[0]
-  console.log(mainURL);
+  let mainURL = buttonImgURL.match(/.*(?=\/img\/open.svg|\/img\/close.svg)/)[0];
+
 
   /.\/img\/open.svg$/.test(button.src)
     ? (button.src = mainURL + '/img/close.svg')
