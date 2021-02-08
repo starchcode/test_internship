@@ -128,6 +128,8 @@ const openCloseQs = e => {
 
   let originalHeight = articleStuff[article.childNodes[3].innerHTML];
 
+    console.log(p)
+    
   if (p.style.height == originalHeight + "px") {
     p.style.height = 0 + 'px';
   } else {
