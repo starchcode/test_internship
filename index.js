@@ -129,7 +129,7 @@ const openCloseQs = e => {
   let originalHeight = articleStuff[article.childNodes[3].innerHTML];
 
     console.log(p)
-    
+
   if (p.style.height == originalHeight + "px") {
     p.style.height = 0 + 'px';
   } else {
@@ -139,10 +139,7 @@ const openCloseQs = e => {
 }
 Qs.addEventListener("click", e => openCloseQs(e));
 
-for(let i=1; i< Qs.childNodes.length; i+=4){
-  openCloseQs(Qs.childNodes[i].childNodes[5])
-  // console.log(Qs.childNodes[i].childNodes[5])
-}
+
 // Qs.childNodes.forEach(p => { openCloseQs(p.childNodes[5])})
 // FAQ END
 
@@ -186,3 +183,19 @@ let sliderTranslateX = 0;
 slider.addEventListener("click", e => slide(e));
 
 // END Slider
+
+
+window.addEventListener('load',  () => {
+
+  console.log("onload");
+  setTimeout(() => {
+    for(let i=1; i< Qs.childNodes.length; i+=4){
+      openCloseQs(Qs.childNodes[i].childNodes[5])
+      // console.log(Qs.childNodes[i].childNodes[5])
+    }
+
+  }, 0);
+})
+
+
+
