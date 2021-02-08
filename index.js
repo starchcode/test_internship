@@ -95,28 +95,29 @@ blogNav.forEach((nav, i) => {
 
 // FAQ
 const Qs = document.querySelector(".faq-content");
-// const Qs = document.querySelector(".Qs");
 let articleStuff = {};
 
 const openCloseQs = e => {
-  
-  let article;
-  !e.target ? article = e.parentNode: article = e.target.parentNode;
-  if(e.target &&  e.target.nodeName === 'IMG'){
-    article = e.target.parentNode.parentNode
-  }else if(e.target && e.target.nodeName == 'HR') return;
 
-  p = article.childNodes[5];
+  e.target = e.target == undefined? e : 'error' //if fired without click event
+
+  let article, p;
+  for(let i = 1; i < Qs.childNodes.length; i += 4){ //select p elements
+    if(Qs.childNodes[i].contains(e.target)){
+      article = Qs.childNodes[i]
+      p = article.childNodes[5]
+    }
+  }
+
   if(!p) return; //if clicked elsewhere
-  if (!p.style.height) p.style.height = p.offsetHeight + "px";
+  if (!p.style.height) p.style.height = p.offsetHeight + "px"; //set its height value
   
-  if (!articleStuff[article.childNodes[3].innerHTML]) {
+  if (!articleStuff[article.childNodes[3].innerHTML]) { //save height in an object for later
       articleStuff[article.childNodes[3].innerHTML] = p.offsetHeight;
     }
     
   let button = article.childNodes[1].childNodes[0];
   let buttonImgURL = button.src;
-    // if (!buttonImgURL) return;
 
   let mainURL = buttonImgURL.match(/.*(?=\/img\/open.svg|\/img\/close.svg)/)[0];
 
@@ -145,20 +146,35 @@ for(let i=1; i< Qs.childNodes.length; i+=4){
 
 // Slider - Last section
 const slide = (e) => {
+let size = window.innerWidth < 505 ? 100: 200;
 
-    let sliderLocation = slider.childNodes[7].getBoundingClientRect();
+let sliderLocation = slider.childNodes[7].getBoundingClientRect();
+let cond = sliderLocation.width;
 
     if (e.target.id == "nextBtnImg" || e.target.parentNode.id == "nextBtnImg") {
 
-      if(Math.abs(sliderLocation.right / window.innerWidth) < 0.5) return // to avoid slider leaving the window
-      sliderTranslateX -= 200;
+      console.log('sliderRigh, cond',sliderLocation.x, cond)
+      console.log('result: ', cond + sliderLocation.x)
+      console.log('condition', cond / 2)
+      if( cond + sliderLocation.x < cond / 2) return // to avoid slider leaving the window
+      sliderTranslateX -= size;
+      console.log('cond met!')
+
 
     } else if (e.target.id == "prevBtnImg" || e.target.parentNode.id == "prevBtnImg") {
 
-      if(Math.abs(sliderLocation.left / window.innerWidth) > 0.5) return // to avoid slider leaving the window
-      sliderTranslateX += 200;
+      console.log('sliderX, cond',sliderLocation.x, cond)
+      console.log('result: ', cond + sliderLocation.x)
+      console.log('condition', cond)
 
-    } else {return} // if buttons are not clicked do nothing!
+      if( cond + sliderLocation.x > cond * 2) return // to avoid slider leaving the window
+      console.log('cond met!')
+      sliderTranslateX += size;
+
+    } else {
+      return
+    }
+       // if buttons are not clicked do nothing!
 
     slider.childNodes[7].style.transform = "translateX(" + sliderTranslateX + "px)";
 }

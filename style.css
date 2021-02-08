@@ -198,10 +198,10 @@ header.featuresHeader h2 {
   cursor: pointer;
 }
 .carousel-container #prevBtn {
-  left: 8%;
+  left: 4.6%;
 }
 .carousel-container #nextBtn {
-  right: 8%;
+  right: 4.6%;
 }
 
 .indicator {
@@ -287,10 +287,14 @@ li.chosenNav {
 /* FAQ */
 .Qs.box{
     align-items: flex-start;
+    margin-top: 197px;
 }
 div.faq-header {
   flex: 1 40%;
   padding-right: 5%;
+}
+.faq-header h1{
+  font-size: 1.7rem;
 }
 div.faq-content {
   flex: 1 60%;
@@ -304,8 +308,12 @@ div.faq-content article{
 }
 .faq-content h4{
     padding: 0.7rem 0;
+    font-weight: 500;
+    font-size: 1rem;
 }
-
+.faq-content a{
+  color: #E3712B;
+}
 .Qs .faq-header header, .Qs .faq-content h4{
 color: #1d2023;
 
@@ -330,11 +338,15 @@ hr.faqHr::after{
 
 .carousel-containerImg {
   width: 90%;
+  margin-top: 153px;
+  padding: 0 3.5%;
   overflow: hidden;
+  background-color: #F4F6F8
 }
 .carousel-slideImg {
   justify-content: left;
   margin: 0 auto;
+  padding: 40px 0 80px 0;
   overflow: hidden;
   transition: all 0.2s ease;
   flex-flow: row nowrap;
@@ -349,6 +361,11 @@ hr.faqHr::after{
   width: 100%;
   padding-left: 1px;
 }
+.carousel-slideImg h4 {
+  font-weight: 500;
+  font-size: 1.3rem;
+  padding-top: 1rem;
+}
 .carousel-containerImg h3 {
   font-size: 2rem;
   font-weight: 700;
@@ -356,13 +373,74 @@ hr.faqHr::after{
 #prevBtnImg,
 #nextBtnImg {
   background-color: rgba(0, 0, 0, 0);
-  padding: 0;
+  padding: .5px;
   margin: 0;
 
   float: right;
 }
+#prevBtnImg img, #nextBtnImg img {
+  width: 45px;
+}
+#prevBtnImg img{
+  transform: scaleX(-1)
+}
 
-/* responsive */
+/* responsiveness */
+@media only screen and (max-width: 700px){
+  html{
+    font-size: 12px;
+  }
+  .main-right{
+    display: none;
+  }
+  div.main-left {
+    width: 100%;
+  }
+  .carousel-slideImg{
+    overflow: visible;
+  }
+}
+
+@media only screen and (max-width: 1010px){
+  .carousel-container img{
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 506px){
+  .blogPost nav ul{
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+@media only screen and (max-width: 362px){
+.faq-content{
+  padding-left: 5.5%;
+}
+}
+@media only screen and (max-width: 350px){
+  .blog-content article{
+    width: auto;
+  }
+  .features.flex article{
+    min-width: 200px;
+  }
+  div.features.flex{
+    /* width: 80%; */
+    padding-right: 0;
+  }
+  .carousel-container {
+    overflow-x: visible;
+  }
+  .carousel-slide {
+    height: auto;
+  }
+} 
+
+@media only screen and (max-width: 204px){
+  .carousel-slideImg article{
+    min-width: 140px;
+  }
+}
 /* .features article, header.featuresHeader h2{
     padding: 0 1rem;
   } */
